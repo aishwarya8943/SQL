@@ -1,0 +1,17 @@
+//SQL: No booleans in SQLite.Instead, we use integer columns to represent boolean values: 0 means false and 1 means true.//
+
+Q45:
+exec(`CREATE TABLE cats (name TEXT, vaccinated INTEGER)`);
+exec(`INSERT INTO cats (name, vaccinated) VALUES ('Ms. Fluff', 1)`);
+exec(`INSERT INTO cats (name, vaccinated) VALUES ('Keanu', 0)`);
+REsult:
+
+Q46:
+exec(`SELECT name FROM cats WHERE vaccinated = 1`);
+
+Result:
+
+Q47:
+exec(`SELECT name FROM cats WHERE vaccinated = 0`);
+
+Result:
