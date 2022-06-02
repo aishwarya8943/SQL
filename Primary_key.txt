@@ -1,0 +1,86 @@
+Q74:
+xec(`CREATE TABLE people (name TEXT)`);
+exec(`INSERT INTO people (name) VALUES ('Amir')`);
+exec(`INSERT INTO people (name) VALUES ('Amir')`);
+exec(`SELECT * FROM people WHERE name = 'Amir'`);
+
+Result:
+
+Q75:
+exec(`CREATE TABLE people (id INTEGER NOT NULL, name TEXT NOT NULL)`);
+exec(`INSERT INTO people (id, name) VALUES (1, 'Amir')`);
+exec(`INSERT INTO people (id, name) VALUES (2, 'Amir')`);
+exec(`SELECT * FROM people WHERE id = 1`);
+
+Result:
+
+Q76:
+exec(`CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT NOT NULL)`);
+exec(`INSERT INTO people (id, name) VALUES (1, 'Amir')`);
+exec(`SELECT * FROM people`);
+
+Result:
+
+Q77:
+exec(`CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT NOT NULL)`);
+exec(`INSERT INTO people (id, name) VALUES (1, 'Amir')`);
+exec(`INSERT INTO people (id, name) VALUES (1, 'Betty')`);
+exec(`SELECT * FROM people`);
+
+Result:
+
+Q78:
+exec(`CREATE TABLE people (name TEXT PRIMARY KEY)`);
+exec(`INSERT INTO people (name) VALUES (NULL)`);
+exec(`SELECT * FROM people`);
+
+Result:
+
+Q79:
+exec(`CREATE TABLE people (id INTEGER PRIMARY KEY NOT NULL, name TEXT)`);
+exec(`INSERT INTO people (name) VALUES ('Amir')`);
+exec(`SELECT * FROM people`);
+
+Result:
+
+Q80:
+exec(`CREATE TABLE people (id INTEGER PRIMARY KEY NOT NULL, name TEXT)`);
+exec(`INSERT INTO people (name) VALUES ('Amir')`);
+exec(`INSERT INTO people (name) VALUES ('Betty')`);
+exec(`SELECT * FROM people`);
+
+Result:
+
+Q81:
+exec(`CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT)`);
+exec(`INSERT INTO people (id, name) VALUES (1001, 'Amir')`);
+exec(`SELECT * FROM people`);
+
+Result:
+
+Q82:
+exec(`CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT)`);
+exec(`INSERT INTO people (id, name) VALUES (1001, 'Amir')`);
+exec(`INSERT INTO people (id, name) VALUES (NULL, 'Amir')`);
+exec(`SELECT * FROM people`);
+
+Result:
+Q83:
+exec(`CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT)`);
+
+Result:
+Q84:
+exec(`CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT PRIMARY KEY)`);
+
+Result:
+
+
+
+// Primary keys in a nutshell:
+
+    Each table can only have one primary key.
+    Primary key values must be unique.
+    Primary key values can't be NULL (but SQLite will allow NULL in some situations for backwards compatibility).
+    Primary key columns can have any type, but most are automatically-incrementing integers starting at 1. 
+    In SQLite, an INTEGER PRIMARY KEY will automatically increment.//
+
