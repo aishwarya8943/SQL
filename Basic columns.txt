@@ -1,0 +1,7 @@
+// we use TEXT for strings ,REAL for floating numbers and INTEGER for  positive and negative numbers.
+
+Q12:
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Ms. Fluff', 3)`);
+exec(`SELECT * FROM cats`);
+Result:
