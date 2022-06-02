@@ -1,0 +1,113 @@
+//The columns named in the WHERE have to exist. Otherwise it's an error.//
+
+Q28:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(`INSERT INTO users (email, name) VALUES ('betty.j@example.com', 'Betty')`);
+exec(`INSERT INTO users (email, name) VALUES ('betty.k@example.com', 'Betty')`);
+exec(`INSERT INTO users (email, name) VALUES ('cindy@example.com', 'Cindy')`);
+
+Result:
+
+Q29:
+exec(`SELECT * FROM users WHERE name = 'Amir'`);
+
+Result:
+
+Q30:
+exec(`SELECT email FROM users WHERE name = 'Amir'`);
+
+Result:
+
+Q31:
+exec(`SELECT email FROM users WHERE login_count = 1`);
+
+Result:
+
+Q32:
+ Write a query to select the names of all cats whose ages are 3.
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Ms. Fluff', 3)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Katy Purry', 5)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Wilford', 3)`);
+exec(``)
+Goal:
+
+    [{name: 'Ms. Fluff'}, {name: 'Wilford'}]
+
+Q33:
+Write a query to select the names of all cats over 4 years old.
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Ms. Fluff', 3)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Katy Purry', 5)`);
+exec(``)
+Goal:
+
+    [{name: 'Katy Purry'}]
+
+Q34:
+Write a query to select the names of all cats who aren't 3 years old.
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Ms. Fluff', 3)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Katy Purry', 5)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Wilford', 3)`);
+exec(``)
+Goal:
+
+    [{name: 'Keanu'}, {name: 'Katy Purry'}]  
+
+Q35:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(`INSERT INTO users (email, name) VALUES ('betty.j@example.com', 'Betty')`);
+exec(`INSERT INTO users (email, name) VALUES ('betty.k@example.com', 'Betty')`);
+exec(`INSERT INTO users (email, name) VALUES ('cindy@example.com', 'Cindy')`);
+Result:
+
+Q36:
+exec(`
+  SELECT email FROM users
+  WHERE name = 'Betty';
+`);
+
+Result:
+
+Q37:
+exec(`
+  SELECT email FROM users
+  WHERE name = 'Betty' AND email = 'betty.j@example.com';
+`);
+
+Result:
+
+Q38:
+exec(`
+  SELECT email FROM users
+  WHERE name = 'Amir' OR name = 'Cindy';
+`);
+
+Result:
+
+Q39:
+
+Write a query to select the ages of the cats named "Keanu" or "Katy Purry".
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Ms. Fluff', 3)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Katy Purry', 5)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Wilford', 3)`);
+exec(``)
+Goal:
+
+    [{age: 2}, {age: 5}]
+
+Q40:
+exec(`CREATE TABLE users (name TEXT)`);
+exec(`INSERT INTO users (name) VALUES ('Amir')`);
+exec(`INSERT INTO users (name) VALUES ('Betty')`);
+exec(`SELECT name FROM users WHERE length(name) > 4`);
+
+Result:
