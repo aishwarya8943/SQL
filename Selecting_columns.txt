@@ -1,0 +1,34 @@
+Q20:
+exec(`CREATE TABLE users (name TEXT, login_count INTEGER)`);
+exec(`INSERT INTO users (name, login_count) VALUES ('Amir', 1)`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q21:
+exec(`CREATE TABLE users (name TEXT, login_count INTEGER)`);
+exec(`INSERT INTO users (name, login_count) VALUES ('Amir', 1)`);
+exec(`SELECT name FROM users`);
+
+Q22:
+exec(`CREATE TABLE users (name TEXT, login_count INTEGER)`);
+exec(`INSERT INTO users (name, login_count) VALUES ('Amir', 1)`);
+exec(``);
+Goal:
+
+    [{login_count: 1}]
+
+Q23:
+exec(`CREATE TABLE users (name TEXT, login_count INTEGER, age INTEGER)`);
+exec(`INSERT INTO users (name, login_count, age) VALUES ('Amir', 1, 36)`);
+exec(`SELECT age, name FROM users`);
+
+Result:
+
+Q24:
+exec(`CREATE TABLE users (name TEXT, login_count INTEGER)`);
+exec(`INSERT INTO users (name, login_count) VALUES ('Amir', 1)`);
+exec(``);
+Goal:
+
+    Error: no such column: email
