@@ -1,0 +1,30 @@
+Q69:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(`INSERT INTO users (email, name) VALUES ('betty.j@example.com', 'Betty')`);
+exec(`DELETE FROM users`);
+exec(`SELECT name FROM users`);
+
+Result:
+
+Q70:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(`INSERT INTO users (email, name) VALUES ('betty.j@example.com', 'Betty')`);
+exec(`DELETE FROM users WHERE name = 'Betty'`);
+exec(`SELECT name FROM users`);
+
+Result:
+
+Q71:
+Delete all of the people named "Amir" or "Betty".
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(`INSERT INTO users (email, name) VALUES ('betty.j@example.com', 'Betty')`);
+exec(`INSERT INTO users (email, name) VALUES ('betty.k@example.com', 'Betty')`);
+exec(`INSERT INTO users (email, name) VALUES ('cindy@example.com', 'Cindy')`);
+exec(``)
+exec(`SELECT name FROM users`);
+Goal:
+
+    [{name: 'Cindy'}]
