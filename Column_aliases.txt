@@ -1,0 +1,30 @@
+//We can rename columns when needed using AS. The result object's properties will use our 
+column aliases instead of the original column names.
+
+Q65:
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(`SELECT name, age AS oldness FROM cats`);
+
+Result:
+
+Q66:
+exec(`SELECT 1 + 1 AS sum`);
+
+Result:
+
+Q67:
+exec(`SELECT DATE('now') > DATE(0) AS does_the_clock_work`);
+
+Result:
+
+Q68:
+Write a query to retrieve all of the cats. 
+Alias the "name" column to "cat_name" and alias "age" to "cat_age".
+
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(``)
+Goal:
+
+    [{cat_age: 2, cat_name: 'Keanu'}]    
