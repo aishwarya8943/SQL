@@ -1,0 +1,33 @@
+Q25:
+xec(`CREATE TABLE users (name TEXT NOT NULL)`);
+exec(`
+  INSERT INTO users (name) VALUES
+    ('Amir'),
+    ('Betty'),
+    ('Cindy')
+`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q26:
+exec(`CREATE TABLE cats (name TEXT NOT NULL)`);
+exec(`  `); ?/ write answer
+exec(`SELECT * FROM cats`);
+Goal:
+
+    [{name: 'Ms. Fluff'}, {name: 'Keanu'}]
+
+Q27:
+exec(`CREATE TABLE users (name TEXT NOT NULL)`);
+exec(`
+  INSERT INTO users (name) VALUES
+    ('Amir'),
+    (null),
+    ('Cindy')
+`);
+
+Result:
+
+Q28:
+
