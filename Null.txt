@@ -1,0 +1,44 @@
+//In SQLite and most other database systems, all columns are nullable unless we specify otherwise.//
+
+
+Q15:
+exec(`CREATE TABLE users (name TEXT, login_count INTEGER)`);
+exec(`INSERT INTO users (name, login_count) VALUES (NULL, NULL)`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q16:
+exec(`CREATE TABLE users (name TEXT NOT NULL, login_count INTEGER NULL)`);
+exec(`INSERT INTO users (name, login_count) VALUES ('Amir', NULL)`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q17:
+exec(`CREATE TABLE users (name TEXT NOT NULL, login_count INTEGER NULL)`);
+exec(`INSERT INTO users (name, login_count) VALUES (NULL, NULL)`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q18:
+We have an orders table with a phone_number column.
+We accidentally introduce a bug where we sometimes insert a NULL phone_number.
+exec(`CREATE TABLE orders (phone_number TEXT NULL)`);
+exec(``)   // write answer
+exec(`SELECT * FROM orders`);
+
+Goal:
+
+    [{phone_number: null}]
+
+
+//SQL databases won't let us change a column to be NOT NULL if it already contains some NULLs.//
+
+Q19:Create a table "cats" with a TEXT NOT NULL name and an INTEGER NULL age.
+exec(``)   //write answer
+exec(`INSERT INTO cats (name, age) VALUES (NULL, 3)`);
+Goal:
+
+    Error: NOT NULL constraint failed: cats.name
