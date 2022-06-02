@@ -1,0 +1,107 @@
+Q53:
+exec(`CREATE TABLE users (email TEXT UNIQUE, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(`SELECT email FROM users`);
+
+Result:
+
+Q54:
+exec(`CREATE TABLE users (email TEXT UNIQUE, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q55:
+exec(`CREATE TABLE users (email TEXT UNIQUE, name TEXT)`);
+exec(`
+  INSERT INTO users (email, name) VALUES ('alex@example.com', 'Alexandra')
+`);
+exec(`
+  INSERT INTO users (email, name) VALUES ('alex@example.com', 'Alexander')
+`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q56:
+exec(`CREATE TABLE emails (username TEXT UNIQUE, domain TEXT UNIQUE)`);
+
+Result:
+
+Q57:
+exec(`CREATE TABLE emails (username TEXT UNIQUE, domain TEXT UNIQUE)`);
+exec(`INSERT INTO emails (username, domain) VALUES ('amir', 'example.com')`);
+
+Result:
+
+Q58:
+exec(`CREATE TABLE emails (username TEXT UNIQUE, domain TEXT UNIQUE)`);
+exec(`INSERT INTO emails (username, domain) VALUES ('amir', 'example.com')`);
+exec(`INSERT INTO emails (username, domain) VALUES ('betty', 'example.com')`);
+
+Result:
+
+Q59:
+exec(`CREATE TABLE emails (username TEXT UNIQUE, domain TEXT UNIQUE)`);
+exec(`INSERT INTO emails (username, domain) VALUES ('amir', 'example.com')`);
+exec(`INSERT INTO emails (username, domain) VALUES ('amir', 'example.net')`);
+
+Result:
+
+Q60:
+exec(`
+  CREATE TABLE emails (
+    username TEXT,
+    domain TEXT,
+    UNIQUE (username, domain)
+  )
+`);
+exec(`INSERT INTO emails (username, domain) VALUES ('amir', 'example.com')`);
+exec(`INSERT INTO emails (username, domain) VALUES ('betty', 'example.com')`);
+
+Result:
+
+Q61:
+exec(`
+  CREATE TABLE emails (
+    username TEXT,
+    domain TEXT,
+    UNIQUE (username, domain)
+  )
+`);
+exec(`INSERT INTO emails (username, domain) VALUES ('amir', 'example.com')`);
+exec(`INSERT INTO emails (username, domain) VALUES ('amir', 'example.com')`);
+
+Result:
+
+Q62:
+exec(`
+  CREATE TABLE emails (
+    username TEXT,
+    domain TEXT,
+    UNIQUE (username, domain)
+  )
+`);
+exec(`INSERT INTO emails (username, domain) VALUES ('amir', 'example.com')`);
+exec(`INSERT INTO emails (username, domain) VALUES ('betty', 'example.com')`);
+
+Result:
+
+Q63:
+exec(`UPDATE emails SET username = 'amir' WHERE username = 'betty'`);
+
+Result:
+
+Q64:
+Create a cats table with two columns, name (the name of the cat) and owner_name. Add a uniqueness constraint to ensure that an owner can't have two cats with the same name.
+exec(``)
+exec(`INSERT INTO cats (name, owner_name) VALUES ('Ms. Fluff', 'Amir')`);
+exec(`INSERT INTO cats (name, owner_name) VALUES ('Ms. Fluff', 'Amir')`);
+Goal:
+
+    Error: UNIQUE constraint failed: cats.name, cats.owner_name
+
+
+
