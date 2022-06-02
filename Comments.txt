@@ -1,0 +1,27 @@
+In SQL, comments begin with --. or for multilines /* */
+Anything from the -- until the end of the line gets ignored.
+
+Q85:
+exec(`
+  CREATE TABLE cats (
+    name TEXT
+    -- owner_name TEXT
+  )
+`);
+exec(`INSERT INTO cats (name, owner_name) VALUES ('Wilford', 'Wilford')`);
+
+Result:
+
+Q86:
+exec(`
+  CREATE TABLE cats (
+    id INTEGER PRIMARY KEY
+    /*
+    name TEXT,
+    owner_name TEXT
+    */
+  )
+`);
+exec(`INSERT INTO cats (name, owner_name) VALUES ('Wilford', 'Wilford')`);
+
+Result:
