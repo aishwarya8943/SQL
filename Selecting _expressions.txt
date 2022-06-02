@@ -1,0 +1,22 @@
+Q48:
+exec(`SELECT 1`)
+Result:
+
+Q49:
+exec(`SELECT 1 + 1`)
+Result:
+
+Q50:
+exec(`SELECT 2 * 3`);
+Result:
+
+Q51:
+exec(`SELECT DATE('now') > DATE(0)`);
+Result:
+
+Q52:
+Select the number 17.
+Exec(``)
+Goal:
+
+    [{'17': 17}]
