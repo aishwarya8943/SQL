@@ -1,0 +1,44 @@
+Q41:
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Ms. Fluff', 3)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(`UPDATE cats SET name = 'Cat'`);
+exec(`SELECT name FROM cats`);
+
+Result:
+
+Q42:
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Ms. Fluff', 3)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(`UPDATE cats SET name = 'Mr. Reeves' WHERE name = 'Keanu'`);
+exec(`SELECT name FROM cats`);
+
+Result:
+
+Q43:
+Ms. Fluff had a birthday! 🎉 Update her age to be 4 instead of 3.
+xec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Ms. Fluff', 3)`);
+exec(`INSERT INTO cats (name, age) VALUES ('Keanu', 2)`);
+exec(``)
+exec(`SELECT * FROM cats`);
+Goal:
+
+    [{age: 4, name: 'Ms. Fluff'}, {age: 2, name: 'Keanu'}]
+
+Q44:
+We have a table of rectangles, but it has incorrect data in it. 
+We've accidentally labeled all of the rectangles as "tall" (height is greater than width).
+But some of them are actually "wide" (height is less than width).
+Write a single UPDATE that sets the wide rectangles' kinds to "wide".
+exec(`CREATE TABLE rects (kind TEXT, width REAL, height REAL)`);
+exec(`INSERT INTO rects (kind, width, height) VALUES ('tall', 1.1, 2.7)`);
+exec(`INSERT INTO rects (kind, width, height) VALUES ('tall', 4.4, 4.3)`);
+exec(`INSERT INTO rects (kind, width, height) VALUES ('tall', 0.4, 8.9)`);
+exec(`INSERT INTO rects (kind, width, height) VALUES ('tall', 100, 0.1)`);
+exec(``);
+exec(`SELECT * FROM rects`);
+Goal:
+
+    [{height: 2.7, kind: 'tall', width: 1.1}, {height: 4.3, kind: 'wide', width: 4.4}, {height: 8.9, kind: 'tall', width: 0.4}, {height: 0.1, kind: 'wide', width: 100}]
