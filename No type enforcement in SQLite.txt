@@ -1,0 +1,25 @@
+//One of SQLite's most notable differences is that it doesn't enforce column types.
+ It will happily let us insert an integer into a TEXT column, or insert a string into a REAL column.//
+
+
+Q13:
+Finish this partial INSERT statement. It should insert a rectangle with a width of 'oh' and a height of 'no'. 
+Many SQL databases won't allow this, but SQLite will.
+
+exec(`CREATE TABLE rectangles (width REAL, height REAL)`);
+exec(``)      // write answer.
+exec(`SELECT * FROM rectangles`);
+Goal:
+
+    [{height: 'no', width: 'oh'}]
+
+
+//everything inserted into a text column is converted to a string. //
+
+Q14:
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(`INSERT INTO cats (name, age) VALUES (7, 'Catsup')`);
+exec(`SELECT * FROM cats`);
+Result :
+
+
