@@ -1,0 +1,74 @@
+// exec is a javascript function that returns an array of objects//
+
+Q1:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(` `)            //write the answer
+Goal:
+
+    [{email: 'amir@example.com', name: 'Amir'}]
+
+Q2:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+exec(` `)    // write answer
+exec(`SELECT * FROM users`);
+Goal:
+
+    [{email: 'amir@example.com', name: 'Amir'}, {email: 'betty@example.com', name: 'Betty'}]
+
+Q3:
+exec(`CREATE TABLE users (name TEXT)`);
+exec(`INSERT INTO users (name) VALUES ('Amir')`);
+exec(`INSERT INTO users (name) VALUES ('Betty')`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q4:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(``);  // write answer
+Goal : []
+
+Q5:
+Use the "CREATE TABLE" syntax to create a table called cats with one TEXT column, name.
+exec(`  `); // write answer
+exec(`INSERT INTO cats (name) VALUES ('Ms. Fluff')`);
+exec(`SELECT * FROM cats`);
+Goal:
+
+    [{name: 'Ms. Fluff'}]
+
+Q6:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+
+Result:
+
+Q7:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`INSERT INTO users (email, name) VALUES ('amir@example.com', 'Amir')`);
+Result: 
+
+//SQL keywords like INSERT and SELECT ignore case, so INSERT and InSeRt mean the same thing. Table and column names also ignore case, so users and USErs refer to the same table.Fortunately, SQL does respect case within strings. 'a' and 'A' are different strings that are not equal. 
+
+Q8:
+exec(`CREATE TABLE users (email text, name text)`);
+exec(`insert into users (email, name) values ('AmiR@example.com', 'Amir')`);
+exec(`SeLeCt * FrOm users`);
+
+Result:
+
+Q9:
+exec(`CREATE TABLE users (name TEXT)`);
+exec(`INSERT INTO users (name, age) VALUES ('Amir', 36)`);
+
+Result:
+
+Q10:
+exec(`<BAD>{BAD}[BAD] This is invalid SQL syntax!`);
+
+Result:
+
+Q11:
+CREATE a cats table with a TEXT name column, then INSERT the cat "Keanu" into the table, 
+then SELECT Keanu back out.
