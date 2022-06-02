@@ -1,0 +1,22 @@
+//Delete will remove the data whereas drop will alter the structure od DB itself.//
+
+
+Q72:
+exec(`CREATE TABLE users (email TEXT, name TEXT)`);
+exec(`DROP TABLE users`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q73:
+Drop the cats table.
+exec(`CREATE TABLE cats (name TEXT, age INTEGER)`);
+exec(``);
+exec(`
+  INSERT INTO cats (name, age)
+  VALUES ('Ms. Fluff', 3);
+`);
+Goal:
+
+    Error: no such table: cats
+
