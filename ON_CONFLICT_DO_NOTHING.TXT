@@ -1,0 +1,46 @@
+Q175:
+exec(`
+  CREATE TABLE vaccinations (cat_name TEXT UNIQUE NOT NULL);
+  INSERT INTO vaccinations (cat_name) VALUES ('Ms. Fluff');
+  SELECT * FROM vaccinations;
+`);
+
+Result:
+Q176:
+exec(`
+  CREATE TABLE vaccinations (cat_name TEXT UNIQUE NOT NULL);
+  INSERT INTO vaccinations (cat_name) VALUES ('Ms. Fluff');
+  INSERT INTO vaccinations (cat_name) VALUES ('Ms. Fluff');
+`);
+
+Result:
+
+Q177:
+exec(`
+  CREATE TABLE vaccinations (cat_name TEXT UNIQUE NOT NULL);
+  INSERT INTO vaccinations (cat_name) VALUES ('Ms. Fluff');
+  INSERT INTO vaccinations (cat_name) VALUES ('Ms. Fluff')
+    ON CONFLICT (cat_name) DO NOTHING;
+  SELECT * FROM vaccinations;
+`);
+
+Result:
+
+Q178:
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE deactivations (
+    user_id UNIQUE REFERENCES users(id),
+    date TEXT NOT NULL
+  );
+  INSERT INTO users (name) VALUES ('Amir');
+  INSERT INTO deactivations (user_id, date) VALUES (1, '2025-10-03');
+  INSERT INTO deactivations (user_id, date) VALUES (1, '2025-10-22')
+
+  // write code 
+  
+  `);
+exec(`SELECT * FROM deactivations`);
