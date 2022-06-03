@@ -1,0 +1,38 @@
+Q197:
+exec(`
+  SELECT
+    people.name AS person_name,
+    cats.name AS cat_name
+  FROM people
+  INNER JOIN cats
+    ON people.id = cats.owner_id
+  WHERE people.name = cats.name
+`);
+
+Result:
+
+Q198:
+exec(`
+  SELECT
+    people.name AS person_name,
+    cats.name AS cat_name
+  FROM people
+  INNER JOIN cats
+    ON people.id = cats.owner_id
+    AND people.name = cats.name
+`);
+
+Result:
+
+Q199:
+exec(`
+  SELECT
+    people.name AS person_name,
+    cats.name AS cat_name
+  FROM people
+  INNER JOIN cats
+  WHERE people.id = cats.owner_id
+  AND people.name = cats.name
+`);
+
+Result:

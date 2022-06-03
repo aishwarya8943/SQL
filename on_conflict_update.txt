@@ -1,0 +1,91 @@
+Q189:
+exec(`
+  CREATE TABLE visits (
+    id INTEGER PRIMARY KEY,
+    -- email is unique because we only want one row per person
+    email TEXT UNIQUE NOT NULL,
+    count INTEGER NOT NULL
+  )
+`);
+
+function visit(email) {
+  const visits = exec(
+    `SELECT * FROM visits WHERE email = ?`,
+    [email]
+  );
+
+  if (visits.length === 0) {
+    exec(
+      `INSERT INTO visits (email, count) VALUES (?, ?)`,
+      [email, 1]
+    );
+  } else {
+    const visit = visits[0];
+    exec(
+      `UPDATE visits SET count = ? WHERE id = ?`,
+      [visit.count + 1, visit.id]
+    );
+  }
+}
+
+visit('amir@example.com');
+visit('amir@example.com');
+exec(`SELECT email, count FROM visits`);
+
+Result:
+
+Q190:
+exec(`
+  CREATE TABLE visits (
+    id INTEGER PRIMARY KEY,
+    -- email is unique because we only want one row per person
+    email TEXT UNIQUE NOT NULL,
+    count INTEGER NOT NULL
+  );
+  INSERT INTO visits (email, count) VALUES ('amir@example.com', 1);
+  INSERT INTO visits (email, count) VALUES ('amir@example.com', 1);
+`);
+
+Result:
+
+Q191:
+exec(`
+  CREATE TABLE visits (
+    id INTEGER PRIMARY KEY,
+    -- email is unique because we only want one row per person
+    email TEXT UNIQUE NOT NULL,
+    count INTEGER NOT NULL
+  );
+  INSERT INTO visits (email, count) VALUES ('amir@example.com', 1);
+  INSERT INTO visits (email, count) VALUES ('amir@example.com', 1)
+    ON CONFLICT (email) DO UPDATE SET count = count + 1;
+  SELECT email, count FROM visits
+`);
+
+Result:
+
+Q192:
+exec(`
+  CREATE TABLE visits (
+    id INTEGER PRIMARY KEY,
+    -- email is unique because we only want one row per person
+    email TEXT UNIQUE NOT NULL,
+    count INTEGER NOT NULL
+  )
+`);
+
+function visit(email) {
+  exec(
+    ` //write code  `,
+    [email]
+  );
+}
+
+visit('amir@example.com');
+visit('amir@example.com');
+exec(`SELECT email, count FROM visits`);
+Goal:
+
+    [{count: 2, email: 'amir@example.com'}]
+
+
