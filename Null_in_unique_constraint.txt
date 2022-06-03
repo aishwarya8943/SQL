@@ -1,0 +1,21 @@
+Q144:
+exec(`CREATE TABLE users (email TEXT NULL UNIQUE)`);
+exec(`INSERT INTO users (email) VALUES (NULL)`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q145:
+exec(`CREATE TABLE users (email TEXT NULL UNIQUE)`);
+exec(`INSERT INTO users (email) VALUES ('amir@example.com')`);
+exec(`INSERT INTO users (email) VALUES ('amir@example.com')`);
+
+Result:
+
+Q146:
+exec(`CREATE TABLE users (email TEXT NULL UNIQUE)`);
+exec(`INSERT INTO users (email) VALUES (NULL)`);
+exec(`INSERT INTO users (email) VALUES (NULL)`);
+exec(`SELECT * FROM users`);
+
+Result:
