@@ -1,0 +1,88 @@
+Q147:
+exec(`
+  CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+  CREATE TABLE cats (
+    owner_id INTEGER REFERENCES people(id),
+    name TEXT NOT NULL
+  );
+  INSERT INTO cats (owner_id, name) VALUES (null, 'Ms. Fluff');
+  SELECT * FROM cats;
+`);
+
+Result:
+
+Q148:
+exec(`
+  CREATE TABLE discounts (id INTEGER PRIMARY KEY, discount_code TEXT NOT NULL);
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    discount_id INTEGER REFERENCES discounts(id) NULL UNIQUE
+  );
+`);
+
+Result:
+
+Q149:
+exec(`
+  INSERT INTO users (name, discount_id) VALUES ('Amir', null)
+`);
+
+Result:
+
+Q150:
+exec(`
+  INSERT INTO discounts (id, discount_code) VALUES (1, 'one-time-use-a1b2c3');
+  INSERT INTO users (name, discount_id) VALUES ('Amir', 1);
+`);
+
+Result:
+
+Q151:
+exec(`
+  INSERT INTO discounts (id, discount_code) VALUES (1, 'one-time-use-a1b2c3');
+  INSERT INTO users (name, discount_id)
+    VALUES
+      ('Amir', 1),
+      ('Betty', 1);
+`);
+
+Result:
+
+Q152:
+
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE comments (
+    user_id REFERENCES users(id) NOT NULL,
+    comment_text TEXT NOT NULL
+  );
+`);
+
+Result:
+
+Q153:
+exec(`
+  INSERT INTO comments (user_id, comment_text)
+    VALUES (1, 'Ms. Fluff needs a bath!');
+`);
+
+Result:
+Q154:
+exec(`
+  INSERT INTO comments (user_id, comment_text)
+    VALUES (null, 'Ms. Fluff needs a bath!');
+`);
+
+Result:
+Q155:
+exec(`
+  INSERT INTO users (id, name) VALUES (1, 'Amir');
+  INSERT INTO comments (user_id, comment_text)
+    VALUES (1, 'Ms. Fluff needs a bath!');
+`);
+
+Result:
