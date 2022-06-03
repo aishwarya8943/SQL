@@ -1,0 +1,78 @@
+Q172:
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    discount_id INTEGER REFERENCES discounts(id) NULL UNIQUE
+  );
+  CREATE TABLE discounts (id INTEGER PRIMARY KEY, discount_code TEXT NOT NULL);
+
+  -- Amir registered with a discount (both Amir and the discount get ID 1).
+  INSERT INTO discounts (discount_code) VALUES ('free-month');
+  INSERT INTO users (name, discount_id) VALUES ('Amir', 1);
+
+  -- Betty registered with no discount.
+  INSERT INTO users (name, discount_id) VALUES ('Betty', NULL);
+
+  SELECT
+    users.name AS name,
+    discounts.discount_code AS discount_code
+  FROM users JOIN discounts
+    ON users.discount_id = discounts.id
+`);
+
+Result:
+
+Q173:
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    discount_id INTEGER REFERENCES discounts(id) NULL UNIQUE
+  );
+  CREATE TABLE discounts (id INTEGER PRIMARY KEY, discount_code TEXT NOT NULL);
+
+  -- Amir registered with a discount (both Amir and the discount get ID 1).
+  INSERT INTO discounts (discount_code) VALUES ('free-month');
+  INSERT INTO users (name, discount_id) VALUES ('Amir', 1);
+
+  -- Betty registered with no discount.
+  INSERT INTO users (name, discount_id) VALUES ('Betty', NULL);
+
+  SELECT
+    users.name AS name,
+    discounts.discount_code AS discount_code
+  FROM users LEFT JOIN discounts
+    ON users.discount_id = discounts.id
+`);
+
+Result:
+
+Q174:
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE comments (
+    user_id REFERENCES users(id) NOT NULL,
+    comment_text TEXT NOT NULL
+  );
+
+  -- Amir has written two comments.
+  INSERT INTO users (name) VALUES ('Amir');
+  INSERT INTO comments (
+    user_id,
+    comment_text
+  ) VALUES (1, 'Ms. Fluff needs a bath!');
+  INSERT INTO comments (
+    user_id,
+    comment_text
+  ) VALUES (1, 'Ms. Fluff strongly dislikes water.');
+
+  -- Betty has written no comments.
+  INSERT INTO users (name) VALUES ('Betty');
+  //write code
+  Goal:
+
+    [{comment_text: 'Ms. Fluff needs a bath!', name: 'Amir'}, {comment_text: 'Ms. Fluff strongly dislikes water.', name: 'Amir'}, {comment_text: null, name: 'Betty'}]
