@@ -1,0 +1,88 @@
+Q120:
+exec(`
+  CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+  CREATE TABLE cats (owner_id INTEGER NOT NULL, name TEXT NOT NULL);
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+`);
+
+Result:
+
+Q121:
+exec(`SELECT id FROM people WHERE name = 'Amir';`);
+
+Result:
+
+Q122:
+exec(`SELECT name FROM cats WHERE owner_id = 100;`);
+
+Result:
+Q123:
+exec(`SELECT name FROM cats WHERE owner_id = 101;`);
+
+Result:
+
+Q124:
+function findCatNames(personName) {
+  const allCatNames = [];
+  const people = exec(`SELECT id FROM people WHERE name = ?`, [personName]);
+  for (const person of people) {
+    const cats = exec(`SELECT name FROM cats WHERE owner_id = ?`, [person.id]);
+    for (const cat of cats) {
+      allCatNames.push(cat.name);
+    }
+  }
+  return allCatNames;
+}
+findCatNames('Amir');
+
+Result:
+
+Q125:
+exec(`
+  CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+  CREATE TABLE cats (owner_id INTEGER NOT NULL, name TEXT NOT NULL);
+
+  -- Amir owns Ms. Fluff.
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+
+  -- Betty owns Keanu.
+  INSERT INTO people (id, name) VALUES (101, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (101, 'Keanu');
+`);
+
+// The database holds both Amir's and Betty's cats.
+// Selecting by owner ID lets us distinguish between them.
+exec(`SELECT name FROM cats WHERE owner_id = ?`, [100]);
+
+Result:
+
+Q126:
+Write a function to find the names of all toys owned by a certain cat.
+
+exec(`
+
+  CREATE TABLE cats (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+
+  CREATE TABLE toys (cat_id INTEGER NOT NULL, name TEXT NOT NULL);
+
+  INSERT INTO cats (name) VALUES ('Ms. Fluff');
+
+  INSERT INTO cats (name) VALUES ('Keanu');
+
+  INSERT INTO toys (cat_id, name) VALUES (1, 'Birdo');
+
+  INSERT INTO toys (cat_id, name) VALUES (2, 'Mouser');
+
+`);
+function findToys(catName) {
+  const allToyNames = [];
+        //write code 
+
+}
+findToys('Ms. Fluff');
+Goal:
+
+    ['Birdo']
+
