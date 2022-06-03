@@ -1,0 +1,107 @@
+Q132:
+exec(`
+  CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+  -- Remember that INTEGER PRIMARY KEYs start at 1.
+  INSERT INTO people (name) VALUES ('Amir');
+  
+  CREATE TABLE cats (owner_id INTEGER NOT NULL, name TEXT NOT NULL);
+  INSERT INTO cats (owner_id, name) VALUES (2170, 'Ms. Fluff');
+`);
+
+Result:
+
+Q133:
+exec(`SELECT id FROM people`);
+
+Result:
+
+Q134:
+exec(`SELECT owner_id FROM cats WHERE name = 'Ms. Fluff'`);
+
+Result:
+
+Q135:
+exec(`SELECT name FROM people WHERE id = 2170`);
+
+Result:
+
+Q136:
+exec(`
+  CREATE TABLE people (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+  CREATE TABLE cats (
+    owner_id INTEGER REFERENCES people(id),
+    name TEXT NOT NULL
+  );
+`);
+
+Result:
+
+Q137:
+exec(`
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+`);
+
+Result:
+
+Q138:
+exec(`INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu')`);
+
+Result:
+
+Q139:
+exec(`
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+  UPDATE people SET id = 101 WHERE name = 'Amir';
+`);
+
+Result:
+
+Q140:
+exec(`
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+  UPDATE cats SET owner_id = 101 WHERE name = 'Ms. Fluff';
+`);
+
+Result:
+
+Q141:
+exec(`
+  INSERT INTO people (id, name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+  DELETE FROM people WHERE name = 'Betty';
+`);
+
+Result:
+
+Q142:
+exec(`
+  INSERT INTO people (id, name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+  DELETE FROM cats WHERE name = 'Keanu';
+  DELETE FROM people WHERE name = 'Betty';
+`);
+
+Result:
+
+Q143:
+exec(`
+  -- Ms. Fluff belongs to Amir (user 100)
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+
+  -- Keanu belongs to Betty (user 200)
+  INSERT INTO people (id, name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+  
+  -- Keanu belongs to Amir instead of Betty
+  UPDATE cats SET owner_id = 100 WHERE name = 'Keanu';
+  
+  -- Delete Betty, who is no longer referenced by any cats
+  DELETE FROM people WHERE name = 'Betty';
+  SELECT name, owner_id FROM cats;
+`);
+
+Result:   
