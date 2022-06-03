@@ -1,0 +1,96 @@
+Q87:
+exec(`CREATE TABLE users (name TEXT)`);
+exec(`INSERT INTO users (name) VALUES ('Amir')`);
+exec(`INSERT INTO users (name) VALUES ('Betty')`);
+
+Result:
+
+Q88:
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q89:
+const users = exec(`SELECT * FROM users`);
+const amir = users[0];
+amir.name;
+
+Result:
+
+Q90:
+exec(`CREATE TABLE users (id INTEGER NOT NULL, name TEXT)`);
+exec(`INSERT INTO users (id, name) VALUES (1, 'Amir')`);
+exec(`INSERT INTO users (id, name) VALUES (2, 'Betty')`);
+exec(`INSERT INTO users (id, name) VALUES (3, 'Betty')`);
+
+Result:
+
+Q91:
+const users = exec(`SELECT name FROM users WHERE id = ?`, [1]);
+const amir = users[0];
+amir.name;
+
+Result:
+
+Q92:
+exec(
+  `SELECT * FROM users WHERE id = ? AND name = ?`,
+  [1, 'Amir']
+);
+
+Result:
+
+Q93:
+exec(
+  `SELECT * FROM users WHERE id = ? AND name = ?`,
+  [2, 'Amir']
+);
+
+Result:
+
+Q94:
+Write a findUser function that finds a user by their ID, returning the result (an array of objects) that comes back from the database. Use a bind parameter (?) to provide the ID to the query. Remember that the ID needs to be passed in an array!
+exec(`CREATE TABLE users (id INTEGER NOT NULL, name TEXT)`);
+exec(`INSERT INTO users (id, name) VALUES (1, 'Amir')`);
+exec(`INSERT INTO users (id, name) VALUES (2, 'Betty')`);
+exec(`INSERT INTO users (id, name) VALUES (3, 'Betty')`);
+function findUser(id) {
+  return exec(
+);}
+[findUser(1), findUser(2), findUser(100)];
+Goal:
+
+    [[{id: 1, name: 'Amir'}], [{id: 2, name: 'Betty'}], []]
+
+Q95:
+Write a findUser function that finds a user by their ID. Return the user object itself, not the full query result array. If no user is found, return JavaScript's null.
+(You can check for whether the query returned no results with if (queryResult.length === 0) { ... }.)
+exec(`CREATE TABLE users (id INTEGER NOT NULL, name TEXT)`);
+exec(`INSERT INTO users (id, name) VALUES (1, 'Amir')`);
+exec(`INSERT INTO users (id, name) VALUES (2, 'Betty')`);
+exec(`INSERT INTO users (id, name) VALUES (3, 'Betty')`);
+function findUser(id) {
+  const queryResult =
+
+
+
+
+[findUser(1), findUser(2), findUser(100)];
+
+Q96:
+exec(`CREATE TABLE cats (name TEXT, owner_name TEXT)`);
+exec(`INSERT INTO cats (name, owner_name) VALUES ('Ms. Fluff', 'Amir')`);
+exec(`INSERT INTO cats (name, owner_name) VALUES ('Wilford', 'Wilford')`);
+exec(`SELECT name FROM cats WHERE name = owner_name`);
+
+Result:
+
+Q97:
+exec(`CREATE TABLE cats (name TEXT, owner_name TEXT)`);
+exec(`INSERT INTO cats (name, owner_name) VALUES ('Ms. Fluff', 'Amir')`);
+exec(`INSERT INTO cats (name, owner_name) VALUES ('Wilford', 'Wilford')`);
+exec(`SELECT name FROM cats WHERE name = ?1 AND owner_name = ?1`, ['Wilford']);
+
+Result:
+
+
