@@ -1,0 +1,34 @@
+//SQL allows us to separate statements with ;.
+ When we do that, only the data from the final statement will be returned.//
+
+Q98:
+exec(`SELECT 1; SELECT 2 AS two`);
+
+Result:
+
+Q99:
+
+    Create a users table with a text name.
+    Insert a user named "Amir".
+    Select the user back out.
+
+exec(``)
+Goal:
+
+    [{name: 'Amir'}]
+
+Q100:
+exec(`CREATE TABLE users (name TEXT)`);
+exec(`INSERT INTO users (name) VALUES ('Amir')`);
+exec(``)
+Goal:
+
+    [{name: 'Amir A'}]
+
+Q101:
+exec(`SELECT 1; SELECT ? AS two`, [1]);
+
+Q102:
+exec(`SELECT ?; SELECT ? AS two`, [1, 2]);
+
+Result:
