@@ -1,0 +1,167 @@
+Q156:
+exec(`
+  CREATE TABLE people (
+    id INTEGER PRIMARY KEY NOT NULL,
+    first_name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    id INTEGER PRIMARY KEY NOT NULL,
+    owner_id INTEGER NOT NULL REFERENCES people(id),
+    name TEXT NOT NULL
+  );
+
+  -- Amir has a cat named Ms. Fluff.
+  INSERT INTO people (id, first_name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+
+  -- Betty has a cat named Keanu.
+  INSERT INTO people (id, first_name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+`);
+
+Result:
+
+Q157:
+exec(`SELECT * FROM people JOIN cats ON people.id = cats.owner_id`);
+
+Result:
+
+Q158:
+exec(`
+  CREATE TABLE people (
+    id INTEGER PRIMARY KEY NOT NULL,
+    first_name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    id INTEGER PRIMARY KEY NOT NULL,
+    owner_id INTEGER NOT NULL REFERENCES people(id),
+    name TEXT NOT NULL
+  );
+
+  -- Amir owns Ms. Fluff
+  INSERT INTO people (id, first_name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+
+  -- Betty owns Keanu
+  INSERT INTO people (id, first_name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+`);
+exec(``)
+Goal:
+
+    [{first_name: 'Amir', id: 1, name: 'Ms. Fluff', owner_id: 100}, {first_name: 'Betty', id: 2, name: 'Keanu', owner_id: 200}]
+
+Q159:
+xec(`
+  CREATE TABLE people (
+    id INTEGER PRIMARY KEY NOT NULL,
+    first_name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    id INTEGER PRIMARY KEY NOT NULL,
+    owner_id INTEGER NOT NULL REFERENCES people(id),
+    name TEXT NOT NULL
+  );
+
+  INSERT INTO people (id, first_name) VALUES (100, 'Amir');
+  INSERT INTO cats (id, owner_id, name) VALUES (1, 100, 'Ms. Fluff');
+  INSERT INTO people (id, first_name) VALUES (200, 'Betty');
+  INSERT INTO cats (id, owner_id, name) VALUES (2, 200, 'Keanu');
+`);
+exec(``)
+Goal:
+
+    [{cat: 'Ms. Fluff', person: 'Amir'}, {cat: 'Keanu', person: 'Betty'}]
+
+Q160:
+exec(`SELECT * FROM people JOIN cats ON people.id = cats.owner_id`);
+
+Result:
+
+Q161:
+exec(`SELECT * FROM cats JOIN people ON people.id = cats.owner_id`);
+
+Result:
+
+Q162:
+exec(`
+  SELECT
+    cats.id AS cat_id,
+    people.id AS person_id
+  FROM people JOIN cats ON people.id = cats.owner_id
+`);
+
+Result:
+
+Q163:
+exec(`
+  SELECT people.first_name AS person, cats.name AS cat
+  FROM people
+  JOIN cats
+    ON people.id = cats.owner_id
+  WHERE people.first_name = 'Amir'
+`);
+
+Result:
+
+Q164:
+exec(`
+  SELECT people.first_name AS person, cats.name AS cat
+  FROM people
+  JOIN cats
+    ON people.id = cats.owner_id
+  WHERE people.first_name = 'Betty'
+`);
+
+Result:
+
+Q165:
+exec(`
+  -- Delete Keanu, so Betty now has no cats.
+  DELETE FROM cats WHERE owner_id = 200;
+
+  SELECT people.first_name AS person, cats.name AS cat
+  FROM people
+  JOIN cats
+    ON people.id = cats.owner_id
+`);
+
+Result:
+
+Q166:
+exec(`
+  -- Betty also has a cat named Kim
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Kim');
+
+  SELECT
+    people.first_name AS person,
+    cats.name AS cat
+  FROM people
+  JOIN cats
+    ON people.id = cats.owner_id
+  WHERE people.first_name = 'Betty'
+`);
+
+Result:
+Q167:
+exec(`
+  CREATE TABLE cats (
+    id INTEGER PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE toys (
+    cat_id INTEGER REFERENCES cats(id) NOT NULL,
+    name TEXT NOT NULL
+  );
+
+  INSERT INTO cats (id, name) VALUES (1, 'Ms. Fluff');
+  INSERT INTO cats (id, name) VALUES (2, 'Keanu');
+
+  INSERT INTO toys (cat_id, name) VALUES (1, 'Birdo');
+  INSERT INTO toys (cat_id, name) VALUES (2, 'Mouser');
+  INSERT INTO toys (cat_id, name) VALUES (2, 'Shy Guy');
+`);
+exec(``)
+Goal:
+
+    [{cat: 'Ms. Fluff', toy: 'Birdo'}, {cat: 'Keanu', toy: 'Mouser'}, {cat: 'Keanu', toy: 'Shy Guy'}]

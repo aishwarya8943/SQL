@@ -1,0 +1,101 @@
+Q168:
+exec(`
+  CREATE TABLE people (
+    id INTEGER PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    owner_id INTEGER REFERENCES people(id) NOT NULL,
+    name TEXT NOT NULL
+  );
+
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+  INSERT INTO people (id, name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+`);
+
+function peopleAndCats() {
+  const results = [];
+  const people = exec(`SELECT * FROM people`);
+  for (const person of people) {}
+  return results;
+}
+peopleAndCats();
+Goal:
+
+    [{cat: 'Ms. Fluff', person: 'Amir'}, {cat: 'Keanu', person: 'Betty'}]
+
+Q169:
+xec(`
+  CREATE TABLE people (
+    id INTEGER PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    owner_id INTEGER REFERENCES people(id) NOT NULL,
+    name TEXT NOT NULL
+  );
+  
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+  INSERT INTO people (id, name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+`);
+
+function peopleAndCats() {
+  const results = [];
+  const people = exec(`SELECT * FROM people`);
+  const cats = exec(`SELECT * FROM cats`);
+  for (const person of people) {
+    for (const cat of cats) {   }
+  }
+  return results;
+}
+peopleAndCats();
+Goal:
+
+    [{cat: 'Ms. Fluff', person: 'Amir'}, {cat: 'Keanu', person: 'Betty'}]
+
+Q170:
+exec(`
+  CREATE TABLE people (
+    id INTEGER PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    owner_id INTEGER REFERENCES people(id) NOT NULL,
+    name TEXT NOT NULL
+  );
+
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+  INSERT INTO people (id, name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+`);
+exec(``)
+Goal:
+
+    [{cat: 'Ms. Fluff', person: 'Amir'}, {cat: 'Keanu', person: 'Betty'}]
+
+Q171
+exec(`
+  CREATE TABLE people (
+    id INTEGER PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    owner_id INTEGER REFERENCES people(id) NOT NULL,
+    name TEXT NOT NULL
+  );
+
+  INSERT INTO people (id, name) VALUES (100, 'Amir');
+  INSERT INTO cats (owner_id, name) VALUES (100, 'Ms. Fluff');
+  INSERT INTO people (id, name) VALUES (200, 'Betty');
+  INSERT INTO cats (owner_id, name) VALUES (200, 'Keanu');
+`);
+exec(``)
+Goal:
+
+    [{cat: 'Ms. Fluff', person: 'Amir'}]
+    
