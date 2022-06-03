@@ -1,0 +1,77 @@
+//mathematical operations on NULL give another NULL//
+
+Q103:
+exec(`SELECT NULL + 0 AS result`);
+
+Result:
+
+Q104:
+exec(`SELECT NULL + 1 AS result`);
+
+Result:
+
+Q105:
+exec(`SELECT NULL * 5 AS result`);
+
+Result:
+
+Q106:
+exec(`SELECT NULL = NULL AS result`);
+
+Result:
+
+Q107:
+exec(`SELECT NULL = 1 AS result`);
+
+Result:
+
+Q108:
+exec(`SELECT 'cat' = NULL AS result`);
+
+Result:
+
+Q109:
+exec(`SELECT NULL IS NULL AS result`);
+
+Result:
+
+Q110:
+exec(`SELECT NULL IS NOT NULL AS result`);
+
+Result:
+
+Q111:
+exec(`SELECT 5 IS NULL AS result`);
+
+Result:
+
+Q112:
+exec(`SELECT 5 IS NOT NULL AS result`);
+
+Result:
+
+Q113:
+exec(`SELECT (NULL = NULL) IS NULL AS result`);
+
+Result:
+
+Q114:
+exec(`CREATE TABLE users (name TEXT NOT NULL, email TEXT NULL)`);
+exec(`INSERT INTO users (name, email) VALUES ('Amir', 'amir@example.com')`);
+exec(`INSERT INTO users (name, email) VALUES ('Cindy', NULL)`);
+exec(`SELECT * FROM users WHERE email IS NOT NULL`);
+
+Result:
+
+Q115:
+exec(`CREATE TABLE users (name TEXT NOT NULL, cat_name TEXT NULL)`);
+exec(`INSERT INTO users (name, cat_name) VALUES ('Amir', 'Ms. Fluff')`);
+exec(`INSERT INTO users (name, cat_name) VALUES ('Betty', 'Keanu')`);
+exec(`INSERT INTO users (name, cat_name) VALUES ('Cindy', NULL)`);
+exec(`INSERT INTO users (name, cat_name) VALUES ('Dalili', NULL)`);
+exec(`INSERT INTO users (name, cat_name) VALUES ('Wilford', 'Wilford')`);
+exec(``)
+Goal:
+
+    [{cat_name: 'Ms. Fluff', name: 'Amir'}, {cat_name: 'Keanu', name: 'Betty'}, {cat_name: 'Wilford', name: 'Wilford'}]
+
