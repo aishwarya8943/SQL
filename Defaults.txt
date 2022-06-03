@@ -1,0 +1,52 @@
+Q127:
+exec(`
+  CREATE TABLE users (
+    name TEXT,
+    login_count INTEGER NOT NULL DEFAULT 0
+  );
+`);
+
+Result:
+
+Q128:
+exec(`INSERT INTO users (name) VALUES ('Amir')`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q129:
+exec(`
+  CREATE TABLE users (
+    name TEXT,
+    login_count INTEGER DEFAULT 0 NOT NULL
+  );
+`);
+exec(`INSERT INTO users (name) VALUES ('Amir')`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q130:
+exec(`
+  CREATE TABLE users (
+    name TEXT,
+    login_count INTEGER NOT NULL DEFAULT 0
+  );
+`);
+exec(`INSERT INTO users (name, login_count) VALUES ('Amir', 1)`);
+exec(`SELECT * FROM users`);
+
+Result:
+
+Q131:
+Create a "cats" table. It should have a TEXT NOT NULL column "name" and an INTEGER NOT NULL column "vaccinated" that defaults to 0 (meaning "false").
+exec(`
+
+//write code 
+
+`);
+exec(`INSERT INTO cats (name) VALUES ('Ms. Fluff')`);
+exec(`SELECT * FROM cats`);
+Goal:
+
+    [{name: 'Ms. Fluff', vaccinated: 0}]
