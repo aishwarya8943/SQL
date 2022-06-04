@@ -82,5 +82,6 @@ Result:
     Primary key values must be unique.
     Primary key values can't be NULL (but SQLite will allow NULL in some situations for backwards compatibility).
     Primary key columns can have any type, but most are automatically-incrementing integers starting at 1. 
-    In SQLite, an INTEGER PRIMARY KEY will automatically increment.//
+    In SQLite, an INTEGER PRIMARY KEY will automatically increment.
+    even if we insert null to a primary key column it gets appended as next number//
 

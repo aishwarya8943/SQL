@@ -1,0 +1,135 @@
+Q193:
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE comments (
+    user_id REFERENCES users(id) NOT NULL,
+    comment_text TEXT NOT NULL
+  );
+
+  -- Amir has written a comment.
+  INSERT INTO users (name) VALUES ('Amir');
+  INSERT INTO comments (
+    user_id,
+    comment_text
+  ) VALUES (1, 'Ms. Fluff needs a bath!');
+
+  -- "Test" our JOIN by querying all of the users and comments.
+  SELECT
+    users.name AS name,
+    comments.comment_text AS comment_text
+  FROM users JOIN comments;
+`);
+
+Result: 
+
+Q194:
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE comments (
+    user_id REFERENCES users(id) NOT NULL,
+    comment_text TEXT NOT NULL
+  );
+
+  -- Amir has written a comment.
+  -- This is a bad test case: it won't notice if we switch the tables!
+  INSERT INTO users (name) VALUES ('Amir');
+  INSERT INTO comments (
+    user_id,
+    comment_text
+  ) VALUES (1, 'Ms. Fluff needs a bath!');
+
+  -- This join contains an error: the table order is flipped.
+  -- But our test can't tell!
+  SELECT
+    users.name AS name,
+    comments.comment_text AS comment_text
+  FROM comments LEFT JOIN users
+    ON users.id = comments.user_id
+`);
+
+Result:
+
+Q195:
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE comments (
+    user_id REFERENCES users(id) NOT NULL,
+    comment_text TEXT NOT NULL
+  );
+
+  -- Ms. Fluff is a cat (with ID 1).
+  INSERT INTO cats (name) VALUES ('Ms. Fluff');
+
+  -- Amir (user ID 1) has written a comment.
+  INSERT INTO users (name) VALUES ('Amir');
+  INSERT INTO comments (
+    user_id,
+    comment_text
+  ) VALUES (1, 'Ms. Fluff needs a bath!');
+
+  -- Select all of the comments joined with "users".
+  -- But we accidentally join against cats' IDs instead of users' IDs.
+  -- The database won't stop us!
+  -- It will happily match up comments' "user_id"s with cats' "id"s.
+  SELECT
+    name,
+    comment_text
+  FROM cats JOIN comments
+    ON id = comments.user_id;
+`);
+
+Result:
+
+Q196:
+exec(`
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE cats (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+  );
+  CREATE TABLE comments (
+    user_id REFERENCES users(id) NOT NULL,
+    comment_text TEXT NOT NULL
+  );
+
+  -- Ms. Fluff is a cat (with ID 1).
+  INSERT INTO cats (name) VALUES ('Ms. Fluff');
+
+  -- Amir (user ID 1) has written a comment.
+  INSERT INTO users (name) VALUES ('Amir');
+  INSERT INTO comments (
+    user_id,
+    comment_text
+  ) VALUES (1, 'Ms. Fluff needs a bath!');
+
+  -- Select all of the comments joined with "users".
+  -- But we accidentally join against cats' IDs instead of users' IDs.
+  -- The database won't stop us!
+  -- It will happily match up comments' "user_id"s with cats' "id"s.
+  --
+  -- Naming the tables explicitly gives us a second chance to notice.
+  SELECT
+    users.name,
+    comments.comment_text
+  FROM cats JOIN comments
+    ON id = comments.user_id;
+`);
+
+Result:
+
